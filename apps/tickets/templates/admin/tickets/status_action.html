@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<p>Выбранные заявки:</p>
+<ul>
+    {% for ticket in tickets %}<li>№{{ ticket.pk }} — {{ ticket.title }} ({{ ticket.get_status_display }})</li>{% endfor %}
+</ul>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% for ticket in tickets %}<input type="hidden" name="_selected_action" value="{{ ticket.pk }}">{% endfor %}
+    <input type="hidden" name="action" value="{{ action }}">
+    <input type="hidden" name="select_across" value="0">
+    <input type="hidden" name="confirm" value="1">
+    <input type="submit" value="Подтвердить">
+    <a href="{% url 'admin:tickets_ticket_changelist' %}">Отмена</a>
+</form>
+{% endblock %}
