@@ -48,7 +48,7 @@ ASGI_APPLICATION = "settings.asgi.application"
 
 
 
-TEMPLATES = [
+TEMPLATES = {
 
     "BACKEND": "django.template.backends.django.DjangoTemplates",
     "DIRS": [BASE_DIR / "templates"],
@@ -61,7 +61,7 @@ TEMPLATES = [
             "django.contrib.messages.context_processors.messages",
         ],
     },
-]
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
