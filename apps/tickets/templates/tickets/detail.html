@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Заявка №{{ ticket.pk }} — DormDesk{% endblock %}
+{% block content %}
+<section class="card">
+    <p><a href="{% url 'tickets:list' %}">Все мои заявки</a></p>
+    <h1>№{{ ticket.pk }} — {{ ticket.title }}</h1>
+    <p>{{ ticket.get_status_display }} · {{ ticket.get_category_display }} · Приоритет: {{ ticket.get_priority_display }}</p>
+    <p>{{ ticket.residency.bed.room.floor.building }} · Комната {{ ticket.residency.bed.room.number }}</p>
+    <div>{{ ticket.description|linebreaks }}</div>
+    {% if ticket.photo %}
+    <p><a href="{{ ticket.photo.url }}">Открыть фото</a></p>
+    <img src="{{ ticket.photo.url }}" alt="Фото к заявке" style="max-width: 100%; height: auto;">
+    {% endif %}
+    {% if ticket.assigned_to %}<p>Исполнитель: {{ ticket.assigned_to }}</p>{% endif %}
+    <p class="muted">Создана: {{ ticket.created_at|date:"d.m.Y H:i" }}{% if ticket.closed_at %} · Закрыта: {{ ticket.closed_at|date:"d.m.Y H:i" }}{% endif %}</p>
+</section>
+<h2>Комментарии</h2>
+{% for comment in comments %}
+<article class="card">
+    <strong>{{ comment.author.first_name }} {{ comment.author.last_name }}</strong>
+    <span class="muted">{{ comment.created_at|date:"d.m.Y H:i" }}</span>
+    {{ comment.text|linebreaks }}
+</article>
+{% empty %}
+<p>Комментариев пока нет.</p>
+{% endfor %}
+<section class="card">
+    {% if can_comment %}
+    <h2>Добавить комментарий</h2>
+    <form method="post" action="{% url 'tickets:comments_create' ticket.pk %}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+    {% else %}
+    {{ comment_form.non_field_errors }}
+    <p>Заявка закрыта. Добавление комментариев недоступно.</p>
+    {% endif %}
+</section>
+{% endblock %}

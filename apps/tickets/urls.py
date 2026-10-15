@@ -1,3 +1,12 @@
+from django.urls import path
+
+from apps.tickets import views
+
 app_name = "tickets"
 
-urlpatterns: list = []
+urlpatterns = [
+    path("", views.ticket_list, name="list"),
+    path("create/", views.ticket_create, name="create"),
+    path("<int:pk>/", views.ticket_detail, name="detail"),
+    path("<int:pk>/comments/", views.ticket_comment_create, name="comments_create"),
+]

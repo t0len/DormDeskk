@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Новая заявка на ремонт — DormDesk{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>Новая заявка на ремонт</h1>
+    {% if form %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить заявку</button>
+    </form>
+    {% else %}
+    <p>Подать заявку на ремонт можно только после заселения.</p>
+    {% endif %}
+    <p><a href="{% url 'tickets:list' %}">К моим заявкам</a></p>
+</section>
+{% endblock %}
