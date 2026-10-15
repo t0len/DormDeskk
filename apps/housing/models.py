@@ -43,7 +43,7 @@ class Floor(TimeStampedModel):
     class Meta:
         verbose_name = "Этаж"
         verbose_name_plural = "Этажи"
-        constaints = [
+        constraints = [
             models.UniqueConstraint(
                 fields = ["building", "number"],
                 name = "unique_building_floor",
@@ -88,7 +88,7 @@ class Room(TimeStampedModel):
 class Bed(TimeStampedModel):
     room = models.ForeignKey(
         "Room",
-        on_delte = models.CASCADE,
+        on_delete = models.CASCADE,
         related_name = "beds",
         verbose_name = "Комната",
     )
@@ -103,7 +103,7 @@ class Bed(TimeStampedModel):
     class Meta:
         verbose_name = "Место"
         verbose_name_plural = "Места"
-        constaints = [
+        constraints = [
             models.UniqueConstraint(
                 fields= ["room", "number"], name = "unique_room_bed"
             )
