@@ -1,6 +1,6 @@
 from django.db import models
 
-class RoomType(models.TextChoice):
+class RoomType(models.TextChoices):
     DOUBLE = "double", "двухместная"
     TRIPLE = "triple", "трехместная"
     QUAD = "quad", "четырехместная"
@@ -13,4 +13,3 @@ class RoomGender(models.TextChoices):
     MALE = "male", "Мужская"
     FEMALE = "female", "Женская"
 
-    

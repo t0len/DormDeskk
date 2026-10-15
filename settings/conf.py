@@ -2,7 +2,7 @@ from pathlib import Path
 from decouple import Config, Csv, RepositoryEnv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-ENV_FILE = BASE_DIR / ".env" / "settings"
+ENV_FILE = BASE_DIR / "settings" / ".env" 
 
 config = Config(RepositoryEnv(ENV_FILE))
 
