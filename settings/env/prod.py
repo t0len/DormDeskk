@@ -1,6 +1,5 @@
-from settings.base import * # noqa: F403
+from settings.base import *  # noqa: F403
 from settings.conf import config
-
 
 DEBUG = False
 
