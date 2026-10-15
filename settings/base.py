@@ -7,7 +7,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 (BASE_DIR / "logs").mkdir(exist_ok=True)
 (BASE_DIR / "media").mkdir(exist_ok=True)
 
-
 SECRET_KEY = SECRET_KEY
 DEBUG = DEBUG
 ALLOWED_HOSTS = ALLOWED_HOSTS
@@ -22,11 +21,10 @@ INSTALLED_APPS = [
     "apps.abstracts",
     "apps.users",
     "apps.housing",
-    "apps.tickets",
     "apps.residency",
+    "apps.tickets",
     "apps.passes",
 ]
-
 
 AUTH_USER_MODEL = "users.User"
 
@@ -40,12 +38,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-
 ROOT_URLCONF = "settings.urls"
-
 WSGI_APPLICATION = "settings.wsgi.application"
 ASGI_APPLICATION = "settings.asgi.application"
-
 
 TEMPLATES = [
     {
@@ -61,40 +56,27 @@ TEMPLATES = [
             ],
         },
     },
-]
-
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": (
-            "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+            "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
         )
     },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-
 LANGUAGE_CODE = "ru-ru"
-
 TIME_ZONE = "Asia/Almaty"
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-Static_URL = "static/"
+STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
@@ -110,15 +92,14 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "verbose": {
-            "format": "{asctime} {levelname} {name} {message}",
+            "format": "{levelname} {asctime} {name} {message}",
             "style": "{",
         },
     },
     "handlers": {
         "file": {
-            "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": BASE_DIR / "logs" / "dprmdesk.log",
+            "filename": BASE_DIR / "logs" / "dormdesk.log",
             "formatter": "verbose",
         },
     },
