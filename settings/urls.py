@@ -1,9 +1,7 @@
-from django.conf.urls import include, path
-
-from django.contrib import admin
-
 from django.conf import settings
+from django.conf.urls import include, path
 from django.conf.urls.static import static
+from django.contrib import admin
 
 admin.site.site_header = "DormDesk"
 admin.site.site_title = "DormDesk"

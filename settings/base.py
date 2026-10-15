@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from settings.conf import ALLOWED_HOSTS, DEBUG, SECRET_KEY
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,7 +15,7 @@ ALLOWED_HOSTS = ALLOWED_HOSTS
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
-    "django.contrib.contenttypes", 
+    "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
@@ -40,34 +41,34 @@ MIDDLEWARE = [
 ]
 
 
-
 ROOT_URLCONF = "settings.urls"
 
 WSGI_APPLICATION = "settings.wsgi.application"
 ASGI_APPLICATION = "settings.asgi.application"
 
 
-
 TEMPLATES = [
-
-    "BACKEND": "django.template.backends.django.DjangoTemplates",
-    "DIRS": [BASE_DIR / "templates"],
-    "APP_DIRS": True,
-    "OPTIONS": {
-        "context_processors": [
-            "django.template.context_processors.debug",
-            "django.template.context_processors.request",
-            "django.contrib.auth.context_processors.auth",
-            "django.contrib.messages.context_processors.messages",
-        ],
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
     },
 ]
 
 
 AUTH_PASSWORD_VALIDATORS = [
-    
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        )
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
