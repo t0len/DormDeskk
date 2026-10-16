@@ -6,7 +6,8 @@ from django.db.models import QuerySet
 from django.http import HttpRequest
 
 from apps.residency.constants import ApplicationStatus, ResidencyStatus
-from apps.residency.models import ApplicationStatusLog, HousingApplication, ResidencyConfig
+from apps.residency.models import ApplicationStatusLog, HousingApplication, Residency
+from apps.residency.apps import ResidencyConfig
 
 class ApplicationStatusLogInline(admin.TabularInline):
     model = ApplicationStatusLog
@@ -17,7 +18,7 @@ class ApplicationStatusLogInline(admin.TabularInline):
 
 @admin.register(HousingApplication)
 class HousingApplicationAdmin(admin.ModelAdmin):
-    list_display = ("id", "student", "preffered_building", "preferred_room_type", "status", "created_at")
+    list_display = ("id", "student", "preferred_building", "preferred_room_type", "status", "created_at")
     list_filter = ("status", "preferred_room_type", "preferred_building")
     search_fields = ("student__email", "student__first_name", "student__last_name", "comment")
     readonly_fields = ("created_at", "updated_at", "reviewed_at", "reviewed_by")

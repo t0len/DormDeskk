@@ -4,7 +4,7 @@ from typing import Any
 from django.db.models import QuerySet
 from django.views.generic import DetailView, ListView
 
-from apps.housing.models import Building, Room
+from apps.housing.models import Building, Room, Bed
 
 try:
     from apps.residency.services import bed_is_occupied

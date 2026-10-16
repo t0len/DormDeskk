@@ -36,7 +36,7 @@ class HousingApplication(TimeStampedModel):
     )
     status: models.CharField = models.CharField(
         max_length=20,
-        choices=ApplicationStatus.choices
+        choices=ApplicationStatus.choices,
         default=ApplicationStatus.PENDING,
         verbose_name="Статус",
     )

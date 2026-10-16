@@ -74,8 +74,8 @@ class Room(TimeStampedModel):
     )
 
     class Meta: 
-        verbose_name = "Комната",
-        verbose_name_plural = "Комнаты",
+        verbose_name = "Комната"
+        verbose_name_plural = "Комнаты"
         constraints = [
             models.UniqueConstraint(
                 fields= ["floor", "number"], name = "unique_floor_number"

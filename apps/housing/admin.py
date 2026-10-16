@@ -26,20 +26,20 @@ class BuildingAdmin(admin.ModelAdmin):
 
 @admin.register(Floor)
 class FloorAdmin(admin.ModelAdmin):
-    list_display = ("number", "floor", "room_type", "gender")
-    list_filter = ("floor__building", "room_type", "gender")
-    search_fields = ("number", "floor__building__name")
-    inlines = [BedInline]
+    list_display = ("building", "number")
+    list_filter = ("building",)
+    search_fields = ("building__name", "number")
+    inlines = [RoomInline]
 
 @admin.register(Room)
 class RoomAdmiin(admin.ModelAdmin):
     list_display = ("number", "floor", "room_type", "gender")
     list_filter = ("floor__building", "room_type", "gender")
     search_fields = ("number", "floor__building__name")
-    inlines = [RoomInline]
+    inlines = [BedInline]
 
 @admin.register(Bed)
-class bedAdmin(admin.ModelAdmin):
+class BedAdmin(admin.ModelAdmin):
     list_display = ("room", "number", "state")
     list_filter = ("state", "room__room_type", "room__floor__building")
     search_fields = ("room__number", "room__floor__building__name")
@@ -48,9 +48,9 @@ class bedAdmin(admin.ModelAdmin):
     @admin.action(description="Снять места с эксплуатации")
     def make_out_of_service(self, request, queryset):
         updated = queryset.update(state = BedState.OUT_OF_SERVICE)
-        self.massage_user(request, f"Снято с эксплуатации мест:{updated}")
+        self.message_user(request, f"Снято с эксплуатации мест:{updated}")
 
     @admin.action(description= "Вернуть выбранные в строй")
     def make_normal(self, request, queryset):
         updated = queryset.update(state = BedState.NORMAL)
-        self.massage_user(request, f"Возварщено в строй: {updated}")
+        self.message_user(request, f"Возварщено в строй: {updated}")
